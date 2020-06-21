@@ -5,12 +5,12 @@ export class Todo {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({unique: false})
+  @Column()
   title: string;
 
-  @Column({unique: false})
+  @Column()
   isComplete: boolean;
 
-  @Column({nullable: true})
+  @Column()
   desc: string;
 }
