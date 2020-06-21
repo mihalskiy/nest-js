@@ -19,17 +19,17 @@ export class TodosController {
   }
 
   @Post()
-  async create(@Body() body): Promise<Todo>  {
-    return this.todoService.create(body);
+  async create(@Body() body: Todo): Promise<void>  {
+    await this.todoService.create(body);
   }
 
   @Put(':id')
-  async update(@Param('id') id, @Body() body): Promise<UpdateResult>  {
-    return this.todoService.update(id, body)
+  async update(@Param('id') id, @Body() body): Promise<void>  {
+    await this.todoService.update(id, body)
   }
 
   @Delete(':id')
-  async remove(@Param('id') id): Promise<DeleteResult> {
-    return this.todoService.remove(id);
+  async remove(@Param('id') id): Promise<void> {
+    await this.todoService.remove(id);
   }
 }
