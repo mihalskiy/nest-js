@@ -7,7 +7,6 @@ import * as process from "process";
 import { ConfigService } from './config.service';
 import { ConfigModule } from '@nestjs/config';
 
-console.log('process.env.POSTGRES_HOST', process.env.POSTGRES_HOST)
 @Module({
   imports: [
     TodosModule,
