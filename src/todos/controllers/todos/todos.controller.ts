@@ -22,6 +22,11 @@ export class TodosController {
     await this.todoService.create(body);
   }
 
+  @Post('bulk')
+  async bulkCreate(@Body() todos: Todo[]): Promise<void>  {
+    await this.todoService.bulkCreate(todos);
+  }
+
   @Put(':id')
   async update(@Param('id') id, @Body() body): Promise<void>  {
     await this.todoService.update(id, body)
