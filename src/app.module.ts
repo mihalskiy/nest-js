@@ -4,27 +4,30 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodosModule } from './todos/todos.module';
 import * as process from "process";
+import { ConfigService } from './config.service';
+import { ConfigModule } from '@nestjs/config';
 
-const username = process.env.POSTGRES_USER || "postgres";
-const password = process.env.POSTGRES_PASSWORD || "postgres";
-const host = process.env.POSTGRES_HOST || "localhost";
-const database = process.env.POSTGRES_DATABASE || "postgres";
-
+console.log('process.env.POSTGRES_HOST', process.env.POSTGRES_HOST)
 @Module({
   imports: [
     TodosModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host,
+      host: process.env.POSTGRES_HOST || "localhost",
       port: 5432,
-      username,
-      password,
-      database,
+      username: process.env.POSTGRES_USER || "postgres",
+      password: process.env.POSTGRES_PASSWORD || "postgres",
+      database: process.env.POSTGRES_DATABASE || "postgres",
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: ConfigService,
+    useValue: new ConfigService('.env'),
+  },],
+  exports: [ConfigService],
 })
 export class AppModule {}
