@@ -21,14 +21,14 @@ export class TodosService {
   }
 
   create(todo: Todo) {
-    this.todoRepository.save(todo);
+    return this.todoRepository.save(todo);
   }
 
   update(id: number, todo: Todo) {
-    this.todoRepository.update(id, todo);
+    return this.todoRepository.update(id, todo);
   }
 
   remove(id: number) {
-    this.todoRepository.delete(id);
+    return this.todoRepository.delete(id);
   }
 }
