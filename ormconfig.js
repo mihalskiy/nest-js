@@ -1,14 +1,15 @@
 const process = require('process');
 
-const username = process.env.POSTGRES_USER || "postgres";
-const password = process.env.POSTGRES_PASSWORD || "postgres";
-const host = process.env.POSTGRES_HOST || "localhost";
-const database = process.env.POSTGRES_DATABASE || "postgres";
+const username = process.env.DB_USER || "postgres";
+const password = process.env.DB_PASSWORD || "postgres";
+const host = process.env.DB_HOST || "localhost";
+const database = process.env.DB_DATABASE || "postgres";
+const port = +process.env.DB_PORT || 3306;
 
 module.exports = {
-  "type": "postgres",
+  "type": "mysql",
   host,
-  "port": 5432,
+  port,
   username,
   password,
   database,
